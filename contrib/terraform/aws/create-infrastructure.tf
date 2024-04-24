@@ -6,6 +6,11 @@ provider "aws" {
   access_key = var.AWS_ACCESS_KEY_ID
   secret_key = var.AWS_SECRET_ACCESS_KEY
   region     = var.AWS_DEFAULT_REGION
+  default_tags {
+    tags = {
+      "Project" = "ALIVE"
+    }
+  }
 }
 
 data "aws_availability_zones" "available" {}
@@ -20,7 +25,7 @@ module "aws-vpc" {
 
   aws_cluster_name         = var.aws_cluster_name
   aws_vpc_cidr_block       = var.aws_vpc_cidr_block
-  aws_avail_zones          = data.aws_availability_zones.available.names
+  aws_avail_zones          = ["us-east-1a", "us-east-1c"]
   aws_cidr_subnets_private = var.aws_cidr_subnets_private
   aws_cidr_subnets_public  = var.aws_cidr_subnets_public
   default_tags             = var.default_tags
@@ -31,7 +36,7 @@ module "aws-nlb" {
 
   aws_cluster_name      = var.aws_cluster_name
   aws_vpc_id            = module.aws-vpc.aws_vpc_id
-  aws_avail_zones       = data.aws_availability_zones.available.names
+  aws_avail_zones       = ["us-east-1a", "us-east-1c"]
   aws_subnet_ids_public = module.aws-vpc.aws_subnet_ids_public
   aws_nlb_api_port      = var.aws_nlb_api_port
   k8s_secure_api_port   = var.k8s_secure_api_port

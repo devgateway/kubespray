@@ -12,7 +12,7 @@ resource "aws_vpc" "cluster-vpc" {
 
 resource "aws_eip" "cluster-nat-eip" {
   count = length(var.aws_cidr_subnets_public)
-  vpc   = true
+  domain = "vpc"
 }
 
 resource "aws_internet_gateway" "cluster-vpc-internetgw" {
