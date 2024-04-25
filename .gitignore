@@ -26,7 +26,10 @@ plugins/mitogen
 inventory/*
 !inventory/local
 !inventory/sample
+!inventory/alive
+inventory/alive/inventory.ini
 inventory/*/artifacts/
+inventory/*/credentials/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
