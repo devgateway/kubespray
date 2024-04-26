@@ -16,6 +16,7 @@ contrib/offline/offline-files.tar.gz
 .terraform/
 contrib/terraform/aws/credentials.tfvars
 .terraform.lock.hcl
+playbooks/ssh-bastion.conf
 /ssh-bastion.conf
 **/*.sw[pon]
 *~
