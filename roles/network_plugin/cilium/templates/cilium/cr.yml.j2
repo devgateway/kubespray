@@ -32,6 +32,12 @@ rules:
   - get
   - list
   - watch
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
 {% if cilium_version | regex_replace('v') is version('1.12', '<') %}
 - apiGroups:
   - ""
@@ -98,6 +104,9 @@ rules:
 {% if cilium_version | regex_replace('v') is version('1.12', '>=') %}
   - ciliumbgploadbalancerippools
   - ciliumbgppeeringpolicies
+{% if cilium_version | regex_replace('v') is version('1.13', '>=') %}
+  - ciliumloadbalancerippools
+{% endif %}
 {% endif %}
 {% if cilium_version | regex_replace('v') is version('1.11.5', '<') %}
   - ciliumnetworkpolicies/finalizers
@@ -106,6 +115,18 @@ rules:
   - ciliumnodes/finalizers
   - ciliumidentities/finalizers
   - ciliumlocalredirectpolicies/finalizers
+{% endif %}
+{% if cilium_version | regex_replace('v') is version('1.14', '>=') %}
+  - ciliuml2announcementpolicies/status
+{% endif %}
+{% if cilium_version | regex_replace('v') is version('1.15', '>=') %}
+  - ciliumbgpnodeconfigs
+  - ciliumbgpnodeconfigs/status
+  - ciliumbgpadvertisements
+  - ciliumbgppeerconfigs
+{% endif %}
+{% if cilium_version | regex_replace('v') is version('1.16', '>=') %}
+  - ciliumbgpclusterconfigs
 {% endif %}
   verbs:
   - '*'
@@ -125,7 +146,23 @@ rules:
   - cilium.io
   resources:
   - ciliumcidrgroups
+  - ciliuml2announcementpolicies
+  - ciliumpodippools
+  - ciliumloadbalancerippools
+  - ciliuml2announcementpolicies/status
   verbs:
   - list
   - watch
+{% if cilium_version %}
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - create
+  - get
+  - update
+  - list
+  - delete
+{% endif %}
 {% endif %}
