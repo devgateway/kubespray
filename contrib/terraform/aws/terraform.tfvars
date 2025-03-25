@@ -14,7 +14,7 @@ aws_cidr_subnets_public  = ["10.250.224.0/20", "10.250.240.0/20"]
 #aws_cidr_subnets_private = ["10.250.192.0/24","10.250.193.0/24","10.250.194.0/24","10.250.195.0/24"]
 #aws_cidr_subnets_public  = ["10.250.224.0/24","10.250.225.0/24","10.250.226.0/24","10.250.227.0/24"]
 
-ami_name_pattern  = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
+ami_name_pattern  = "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"
 ami_owners        = ["099720109477"]
 
 #Bastion Host
