@@ -73,7 +73,6 @@ spec:
           volumeMounts:
             - mountPath: /csi
               name: socket-dir
-{% if external_vsphere_version >= "7.0" %}
         - name: csi-resizer
           image: {{ kube_image_repo }}/sig-storage/csi-resizer:{{ vsphere_csi_resizer_tag }}
           args:
@@ -97,7 +96,6 @@ spec:
           volumeMounts:
             - mountPath: /csi
               name: socket-dir
-{% endif %}
         - name: vsphere-csi-controller
           image: {{ kube_image_repo }}/csi-vsphere/driver:{{ vsphere_csi_controller }}
           args:

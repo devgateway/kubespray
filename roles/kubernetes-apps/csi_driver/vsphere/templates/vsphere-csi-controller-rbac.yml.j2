@@ -18,14 +18,12 @@ rules:
   - apiGroups: [""]
     resources: ["persistentvolumeclaims"]
     verbs: ["get", "list", "watch", "update"]
-{% if external_vsphere_version >= "7.0" %}
   - apiGroups: [""]
     resources: ["persistentvolumeclaims/status"]
 {% if external_vsphere_version >= "7.0u1" %}
     verbs: ["patch"]
 {% else %}
     verbs: ["update", "patch"]
-{% endif %}
 {% endif %}
   - apiGroups: [""]
     resources: ["persistentvolumes"]
