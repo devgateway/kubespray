@@ -30,7 +30,8 @@ inventory/*
 !inventory/local
 !inventory/sample
 !inventory/alive
-inventory/alive/inventory.ini
+!inventory/moa
+inventory/*/inventory.ini
 inventory/*/artifacts/
 inventory/*/credentials/
 
